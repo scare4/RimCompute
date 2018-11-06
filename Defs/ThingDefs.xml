@@ -26,7 +26,7 @@
       <Flammability>0.5</Flammability>
       <Mass>5</Mass>
     </statBases>
-    <description>Required for orbital trading. You can only sell goods to orbital traders if they're near an orbital trade beacon. Can be placed indoors.</description>
+    <description>placeholder</description>
     <drawerType>MapMeshAndRealTime</drawerType>
     <fillPercent>0.15</fillPercent>
     <costList>
@@ -45,7 +45,6 @@
     <pathCost>8</pathCost>
     <designationCategory>Misc</designationCategory>
     <rotatable>false</rotatable>
-    <designationHotKey>Misc2</designationHotKey>
     <researchPrerequisites>
       <li>MicroelectronicsBasics</li>
     </researchPrerequisites>

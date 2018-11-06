@@ -4,9 +4,3 @@
 4th mount it on legs
 5th allow it to interact with the world
 6th upgrades
-
-======
-itab -> entite
-faire une entite
-chercher comment utiliser les widjets (zone de texte notament)
-scripts
