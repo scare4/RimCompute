@@ -1,0 +1,12 @@
+1st create programmable computer
+2nd create connection to outside world
+3rd add IO (sensor/LCD)
+4th mount it on legs
+5th allow it to interact with the world
+6th upgrades
+
+======
+itab -> entite
+faire une entite
+chercher comment utiliser les widjets (zone de texte notament)
+scripts
