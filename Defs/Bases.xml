@@ -3,7 +3,7 @@
 
   <RimCompute_ComputerThing Name="RimCompute_BuildingBase" Abstract="True">
     <category>Building</category>
-    <thingClass>Building</thingClass>
+    <thingClass>RimCompute.RimCompute_ComputerThing</thingClass>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
     <selectable>true</selectable>
     <drawerType>MapMeshAndRealTime</drawerType>

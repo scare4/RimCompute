@@ -11,18 +11,8 @@ namespace RimCompute
         {
             get
             {
-                return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\" + this.ScriptName;
+                return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\RimComputeScripts\\" + this.ScriptName;
             }
-        }
-
-        public RimCompute_ComputerThing()
-        {
-
-        }
-
-        public RimCompute_ComputerThing(Thing PrevThing)
-        {
-
         }
     }
 }
