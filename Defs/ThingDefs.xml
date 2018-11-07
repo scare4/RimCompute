@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <RimCompute_ComputerThing ParentName="RimCompute_BuildingBase">
+  <ThingDef ParentName="RimCompute_BuildingBase">
     <defName>RimCompute_test</defName>
     <label>test</label>
     <graphicData>
@@ -51,7 +51,11 @@
     <inspectorTabs>
       <li>RimCompute.ITab_Computer</li>
     </inspectorTabs>
-    <ScriptName></ScriptName>
-  </RimCompute_ComputerThing>
+    <modExtensions>
+      <li Class="RimCompute.Script">
+         <ScriptName></ScriptName>
+      </li>
+    </modExtensions>
+  </ThingDef>
 
 </Defs>

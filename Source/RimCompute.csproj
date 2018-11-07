@@ -36,6 +36,15 @@
       <HintPath>..\..\..\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="KeraLua">
+      <HintPath>..\..\..\..\..\..\..\..\Users\Utilisateur\Desktop\NLua-1.0.70\NLua\NLua\tests\KeraLua.dll</HintPath>
+    </Reference>
+    <Reference Include="KopiLua">
+      <HintPath>..\..\..\..\..\..\..\..\Users\Utilisateur\Desktop\NLua-1.0.70\NLua\NLua\tests\KopiLua.dll</HintPath>
+    </Reference>
+    <Reference Include="NLua">
+      <HintPath>..\..\..\..\..\..\..\..\Users\Utilisateur\Desktop\NLua-1.0.70\NLua\NLua\tests\NLua.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,9 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LuaControl.cs" />
     <Compile Include="RimCompute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RimCompute_ComputerThing.cs" />
+    <Compile Include="Script.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

@@ -3,16 +3,18 @@ using Verse;
 
 namespace RimCompute
 {
-    public class RimCompute_ComputerThing : ThingDef
+    public class Script : DefModExtension
     {
         public string ScriptName;
 
-        public string StringPath
+        public string ScriptPath
         {
             get
             {
                 return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\RimComputeScripts\\" + this.ScriptName;
             }
         }
+
+        public bool IsScriptRunning;
     }
 }

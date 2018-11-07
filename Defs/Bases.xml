@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
 
-  <RimCompute_ComputerThing Name="RimCompute_BuildingBase" Abstract="True">
+  <ThingDef Name="RimCompute_BuildingBase" Abstract="True">
     <category>Building</category>
-    <thingClass>RimCompute.RimCompute_ComputerThing</thingClass>
+    <thingClass>Building</thingClass>
     <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
     <selectable>true</selectable>
     <drawerType>MapMeshAndRealTime</drawerType>
@@ -14,7 +14,7 @@
     <statBases>
       <SellPriceFactor>0.70</SellPriceFactor>
     </statBases>
-  </RimCompute_ComputerThing>
+  </ThingDef>
 
 
 </Defs>

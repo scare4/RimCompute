@@ -3,7 +3,6 @@ using System;
 using System.IO;
 using UnityEngine;
 using Verse;
-using RimCompute;
 
 namespace RimCompute
 {
@@ -24,19 +23,24 @@ namespace RimCompute
             this.labelKey = "program";
         }
 
-        private RimCompute_ComputerThing SelectedThing
+        private ThingDef SelectedThing
         {
             get
             {
-                RimCompute_ComputerThing Selected = null;
-                if (base.SelObject != null)
+                ThingDef Selected = null;
+                if (base.SelThing != null)
                 {
-                    Selected = base.SelObject as RimCompute_ComputerThing;
-                }
-                if (Selected == null)
-                {
-                    Log.Error("Computer Tab found no selected computers to display", false);
-                    return null;
+                    if (!(SelThing is Thing CurrThing))
+                    {
+                        Log.Error("Computer Tab found no thing computers to display");
+                        return null;
+                    }
+                    Selected = CurrThing.def;
+                    if (Selected == null)
+                    {
+                        Log.Error("Computer Tab found no def in " + CurrThing.Label);
+                        return null;
+                    }
                 }
                 return Selected;
             }
@@ -44,7 +48,7 @@ namespace RimCompute
 
         protected override void FillTab()
         {
-            RimCompute_ComputerThing selected = SelectedThing;
+            ThingDef selected = SelectedThing;
             Rect rect = new Rect(17f, 17f, RimCompute_Program_CardUtility.CardSize.x, RimCompute_Program_CardUtility.CardSize.y);
             RimCompute_Program_CardUtility.DrawCard(rect, selected);
         }
@@ -56,7 +60,7 @@ namespace RimCompute
 
         public static Vector2 ScrollPos = new Vector2(0f, 0f);
 
-        public static void DrawCard(Rect rect, RimCompute_ComputerThing Selected)
+        public static void DrawCard(Rect rect, ThingDef Selected)
         {
             GUI.BeginGroup(rect);
             string Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\RimComputeScripts";
@@ -79,12 +83,12 @@ namespace RimCompute
             }
             Widgets.TextArea(new Rect(15f, 15f, 300f, 25f), "Scripts", true);
             Widgets.TextAreaScrollable(new Rect(15f, 50f, 300f, 300f), ScriptList, ref ScrollPos, false);
-            Widgets.TextEntryLabeled(new Rect(325f, 15f, 400f, 25f), "Select Script", Selected.ScriptName);
+            Selected.GetModExtension<Script>().ScriptName = Widgets.TextArea(new Rect(305f, 15f, 300f, 25f), Selected.GetModExtension<Script>().ScriptName);
 
             bool Valid = false;
             foreach (FileInfo File in Files)
             {
-                if (File.Name == Selected.ScriptName)
+                if (File.Name == Selected.GetModExtension<Script>().ScriptName)
                 {
                     Valid = true;
                     break;
@@ -94,6 +98,20 @@ namespace RimCompute
             if (Valid)
             {
                 Widgets.TextArea(new Rect(325f, 85f, 400f, 100f), "Valid script", true);
+                bool RunToogle = Widgets.ButtonText(new Rect(325, 105, 400f, 130f), "Start script", true);
+                if (RunToogle)
+                {
+                    RunToogle = false;
+                    if (!Selected.GetModExtension<Script>().IsScriptRunning)
+                    {
+                        LuaControl.Start(Selected);
+                    }
+                    else
+                    {
+                        LuaControl.End(Selected);
+                    }
+                    Selected.GetModExtension<Script>().IsScriptRunning = !Selected.GetModExtension<Script>().IsScriptRunning;
+                }
             }
             else
             {
