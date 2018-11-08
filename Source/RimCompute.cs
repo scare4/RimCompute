@@ -60,6 +60,8 @@ namespace RimCompute
 
         public static Vector2 ScrollPos = new Vector2(0f, 0f);
 
+        public static Vector2 ScrollPos2 = new Vector2(0f, 0f);
+
         public static void DrawCard(Rect rect, ThingDef Selected)
         {
             GUI.BeginGroup(rect);
@@ -97,8 +99,8 @@ namespace RimCompute
 
             if (Valid)
             {
-                Widgets.TextArea(new Rect(325f, 85f, 400f, 100f), "Valid script", true);
-                bool RunToogle = Widgets.ButtonText(new Rect(325, 105, 400f, 130f), "Start script", true);
+                Widgets.TextArea(new Rect(325f, 85f, 100f, 25f), "Valid script", true);
+                bool RunToogle = Widgets.ButtonText(new Rect(325f, 105f, 300f, 25f), "Start script", true);
                 if (RunToogle)
                 {
                     RunToogle = false;
@@ -115,8 +117,9 @@ namespace RimCompute
             }
             else
             {
-                Widgets.TextArea(new Rect(325f, 85f, 400f, 100f), "Invalid script", true);
+                Widgets.TextArea(new Rect(325f, 85f, 100f, 25f), "Invalid script", true);
             }
+            Widgets.TextAreaScrollable(new Rect(325f, 130f, 300f, 300f), LuaControl.LuaOutput, ref ScrollPos2, false);
             GUI.EndGroup();
         }
     }

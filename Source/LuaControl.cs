@@ -1,4 +1,5 @@
 ﻿using NLua;
+using System;
 using Verse;
 
 namespace RimCompute
@@ -7,8 +8,32 @@ namespace RimCompute
     {
         public static void Start(ThingDef Computer)
         {
-            State.DoString(@" import ('RimCompute.dll', 'LuaControl')");
-            State.DoFile(Computer.GetModExtension<Script>().ScriptPath);
+            State.LoadCLRPackage();
+            try
+            {
+                State.DoString(@" import ('RimCompute.dll', 'RimCompute')");
+            }
+            catch (Exception E)
+            {
+                LuaOutput += "Error loading RimCompute dll\n" + E + "\n";
+            }
+            try
+            {
+                State.DoString(@" local Stuf = RimLua()");
+            }
+            catch (Exception E)
+            {
+                LuaOutput += "Error loading RimCompute library\n" + E + "\n";
+            }
+            try
+            {
+                State.DoFile(Computer.GetModExtension<Script>().ScriptPath);
+            }
+            catch (Exception E)
+            {
+                LuaOutput += "Error loading script " + Computer.GetModExtension<Script>().ScriptName + "\n" + E + "\n";
+            }
+            
         }
 
         public static void End(ThingDef Computer)
@@ -17,20 +42,28 @@ namespace RimCompute
             Computer.GetModExtension<Script>().ScriptName = "";
         }
 
+        public static string LuaOutput;
+
+        private static Lua State = new Lua();
+    }
+
+    public class RimLua
+    {
         public static void WriteOut(object ToPrint)
         {
             try
             {
-                LuaOutput += ToPrint.ToString();
+                LuaControl.LuaOutput += ToPrint.ToString();
             }
             catch
             {
-                LuaOutput += "Could not convert to string\n";
+                LuaControl.LuaOutput += "Could not convert to string\n";
             }
         }
 
-        public static string LuaOutput;
+        public RimLua()
+        {
 
-        private static Lua State = new Lua();
+        }
     }
 }
